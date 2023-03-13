@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvedldn7ohk1c"]
+[gd_scene load_steps=6 format=3 uid="uid://d2v11jcu7sbdl"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_ny4so"]
-[ext_resource type="SpriteFrames" uid="uid://ku8so74veyou" path="res://Art/player_sprite_frames.tres" id="2_girq4"]
+[ext_resource type="SpriteFrames" uid="uid://dn0sprsw0c560" path="res://Art/player_sprite_frames.tres" id="2_girq4"]
+[ext_resource type="Texture2D" uid="uid://dlfeoy5al4kls" path="res://Art/player/player_idle/player_arms.png" id="3_q7egf"]
+[ext_resource type="Texture2D" uid="uid://bjysbp3qw5wcv" path="res://Art/player/weapon_rifle.png" id="4_py2ea"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_io2uy"]
-radius = 21.0
-height = 72.0
+radius = 13.0
+height = 60.0
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("gun_anchor")]
 floor_stop_on_slope = false
@@ -18,12 +20,24 @@ shape = SubResource("CapsuleShape2D_io2uy")
 debug_color = Color(0, 0.643137, 0.278431, 0.419608)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1.5, 2.02656e-06)
+scale = Vector2(1.72, 1.71429)
 sprite_frames = ExtResource("2_girq4")
+animation = &"run"
+autoplay = "run"
+frame_progress = 0.950478
 
 [node name="GunAnchor" type="Node2D" parent="."]
+position = Vector2(-2, -10)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-limit_left = 54
-limit_top = -19
-limit_right = 983
-limit_bottom = 498
+[node name="PlayerArms" type="Sprite2D" parent="GunAnchor"]
+texture_filter = 1
+scale = Vector2(1.4835, 1.48368)
+texture = ExtResource("3_q7egf")
+offset = Vector2(6, 1)
+
+[node name="WeaponRifle" type="Sprite2D" parent="GunAnchor/PlayerArms"]
+show_behind_parent = true
+texture = ExtResource("4_py2ea")
+offset = Vector2(13, 0)

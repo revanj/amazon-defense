@@ -1,11 +1,10 @@
 extends Node
 
 
-var house_health = 10
-
-@export var house : Node2D
+@export var house: Node2D
+@export var UI : CanvasLayer
 
 func on_enemy_entered(area):
 	if (area.is_in_group("enemy")):
-		house_health -= area.damage
+		UI.heath_dec(area.damage)
 		area.queue_free()

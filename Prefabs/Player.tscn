@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvedldn7ohk1c"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_ny4so"]
+[ext_resource type="SpriteFrames" uid="uid://ku8so74veyou" path="res://Art/player_sprite_frames.tres" id="2_girq4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_io2uy"]
+radius = 21.0
+height = 72.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("gun_anchor")]
+floor_stop_on_slope = false
+platform_on_leave = 2
+script = ExtResource("1_ny4so")
+gun_anchor = NodePath("GunAnchor")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_io2uy")
+debug_color = Color(0, 0.643137, 0.278431, 0.419608)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_girq4")
+
+[node name="GunAnchor" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 54
+limit_top = -19
+limit_right = 983
+limit_bottom = 498

@@ -1,0 +1,104 @@
+[gd_scene load_steps=14 format=3 uid="uid://c6pwlogocbggn"]
+
+[ext_resource type="PackedScene" uid="uid://bvedldn7ohk1c" path="res://Prefabs/Player.tscn" id="1_wrjia"]
+[ext_resource type="Script" path="res://DroneSpawner.gd" id="2_aa5qr"]
+[ext_resource type="PackedScene" uid="uid://ci2fxq0ntbt3f" path="res://Prefabs/Drone.tscn" id="2_u1ppu"]
+[ext_resource type="Script" path="res://Scripts/Bookkeeper.gd" id="3_hrm4a"]
+[ext_resource type="Script" path="res://WorldBoundDestroy.gd" id="5_2u2jn"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_i6dii"]
+a = Vector2(-500, 0)
+b = Vector2(500, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_f2eo7"]
+a = Vector2(0, 250)
+b = Vector2(0, -250)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_nrujo"]
+a = Vector2(0, 250)
+b = Vector2(0, -250)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1md5w"]
+size = Vector2(154.061, 406.322)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_loxke"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hfynw"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ljhwr"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wigrg"]
+normal = Vector2(0, 1)
+
+[node name="World" type="Node2D"]
+scale = Vector2(1.01908, 1.22563)
+
+[node name="Bookkeeper" type="Node" parent="."]
+script = ExtResource("3_hrm4a")
+
+[node name="DroneSpawner" type="Node" parent="." node_paths=PackedStringArray("timer", "spawn_point")]
+script = ExtResource("2_aa5qr")
+timer = NodePath("Timer")
+spawn_point = NodePath("../SpawnPoint")
+
+[node name="Timer" type="Timer" parent="DroneSpawner"]
+wait_time = 5.0
+autostart = true
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_wrjia")]
+position = Vector2(222.75, 329.626)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(440.594, 386.739)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("SegmentShape2D_i6dii")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(894.925, 193.37)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("SegmentShape2D_f2eo7")
+
+[node name="House" type="StaticBody2D" parent="."]
+position = Vector2(72.6145, 177.868)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="House"]
+shape = SubResource("SegmentShape2D_nrujo")
+
+[node name="Area2D" type="Area2D" parent="House"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="House/Area2D"]
+position = Vector2(-65.2549, 11.4227)
+shape = SubResource("RectangleShape2D_1md5w")
+
+[node name="Drone" parent="." instance=ExtResource("2_u1ppu")]
+position = Vector2(789.928, 92.1975)
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(1056.84, 128.913)
+
+[node name="Bounds" type="Area2D" parent="."]
+script = ExtResource("5_2u2jn")
+
+[node name="Bottom" type="CollisionShape2D" parent="Bounds"]
+position = Vector2(454.331, 452.828)
+shape = SubResource("WorldBoundaryShape2D_loxke")
+
+[node name="Right" type="CollisionShape2D" parent="Bounds"]
+position = Vector2(1258.98, 136.256)
+shape = SubResource("WorldBoundaryShape2D_hfynw")
+
+[node name="Left" type="CollisionShape2D" parent="Bounds"]
+position = Vector2(-241.394, 103.62)
+shape = SubResource("WorldBoundaryShape2D_ljhwr")
+
+[node name="Top" type="CollisionShape2D" parent="Bounds"]
+position = Vector2(479.845, -99.5406)
+shape = SubResource("WorldBoundaryShape2D_wigrg")
+
+[connection signal="area_entered" from="House/Area2D" to="Bookkeeper" method="on_enemy_entered"]
+[connection signal="area_entered" from="Bounds" to="Bounds" method="on_area_entered"]
+[connection signal="body_entered" from="Bounds" to="Bounds" method="on_body_entered"]

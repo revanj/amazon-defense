@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://ceyeufoat6i0a"]
+
+[ext_resource type="Texture2D" uid="uid://fs7v3ypbnj6u" path="res://Art/drone_yellow/drone_yellow_1.png" id="1_yov37"]
+[ext_resource type="Texture2D" uid="uid://bcneuuh1wqcyo" path="res://Art/drone_yellow/drone_yellow_2.png" id="2_lwwa1"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yov37")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_lwwa1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

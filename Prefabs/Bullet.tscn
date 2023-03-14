@@ -1,23 +1,21 @@
 [gd_scene load_steps=4 format=3 uid="uid://fqmo8qi7a40s"]
 
 [ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_nfg5t"]
-[ext_resource type="Texture2D" uid="uid://bikcwwhvfuq3l" path="res://icon.svg" id="2_nhv22"]
+[ext_resource type="Texture2D" uid="uid://dynin7yslexti" path="res://Art/player/bullet.png" id="2_liu8h"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0fb7w"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h3wbw"]
+size = Vector2(22, 2)
 
 [node name="Bullet" type="Area2D"]
+scale = Vector2(3, 2.68)
 script = ExtResource("1_nfg5t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_0fb7w")
+shape = SubResource("RectangleShape2D_h3wbw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-
-[node name="Icon" type="Sprite2D" parent="."]
-modulate = Color(0.862745, 0.717647, 0, 1)
-self_modulate = Color(1, 1, 0, 1)
-position = Vector2(-4.76837e-07, 1.19209e-07)
-scale = Vector2(0.136719, 0.128906)
-texture = ExtResource("2_nhv22")
+texture_filter = 1
+texture = ExtResource("2_liu8h")
 
 [connection signal="area_entered" from="." to="." method="on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -9,7 +9,8 @@
 radius = 13.0
 height = 60.0
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("gun_anchor")]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("gun_anchor") groups=["player"]]
+scale = Vector2(1, 0.76)
 floor_stop_on_slope = false
 platform_on_leave = 2
 script = ExtResource("1_ny4so")
@@ -24,9 +25,8 @@ texture_filter = 1
 position = Vector2(1.5, 2.02656e-06)
 scale = Vector2(1.72, 1.71429)
 sprite_frames = ExtResource("2_girq4")
-animation = &"run"
+animation = &"jump"
 autoplay = "run"
-frame_progress = 0.950478
 
 [node name="GunAnchor" type="Node2D" parent="."]
 position = Vector2(-2, -10)
@@ -41,3 +41,6 @@ offset = Vector2(6, 1)
 show_behind_parent = true
 texture = ExtResource("4_py2ea")
 offset = Vector2(13, 0)
+
+[node name="GunTip" type="Node2D" parent="GunAnchor/PlayerArms/WeaponRifle"]
+position = Vector2(24.2669, -1.24158)

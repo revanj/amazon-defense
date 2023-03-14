@@ -12,6 +12,13 @@ func _physics_process(delta):
 
 
 func on_area_entered(area):
-	if area.has_method("hurt"):
+	if area.is_in_group("enemy"):
 		area.hurt(damage)
 		queue_free()
+
+
+func _on_body_entered(body):
+	if body.is_in_group("enemy"):
+		body.hurt(damage)
+		queue_free()
+		

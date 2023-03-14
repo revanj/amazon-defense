@@ -20,3 +20,4 @@ func heath_dec(amount):
 		crystals[i].modulate.a = 1
 	for i in range(current_health, 5):
 		crystals[i].modulate.a = 0
+

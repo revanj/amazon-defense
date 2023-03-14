@@ -13,10 +13,11 @@ crystal3 = NodePath("HealthbarFull/TextureRect2")
 crystal4 = NodePath("HealthbarFull/TextureRect")
 
 [node name="HealthbarDepleted" type="VBoxContainer" parent="."]
-offset_left = 26.0
-offset_top = 28.0
-offset_right = 51.0
-offset_bottom = 491.0
+offset_left = 450.59
+offset_top = 22.0
+offset_right = 475.59
+offset_bottom = 485.0
+rotation = 1.5708
 scale = Vector2(1, 0.910562)
 theme_override_constants/separation = -6
 alignment = 1
@@ -57,10 +58,11 @@ texture = ExtResource("2_00iwk")
 expand_mode = 1
 
 [node name="HealthbarFull" type="VBoxContainer" parent="."]
-offset_left = 26.0
-offset_top = 28.0
-offset_right = 51.0
-offset_bottom = 491.0
+offset_left = 450.59
+offset_top = 22.0
+offset_right = 475.59
+offset_bottom = 485.0
+rotation = 1.5708
 scale = Vector2(1, 0.910562)
 theme_override_constants/separation = -6
 alignment = 1

@@ -1,17 +1,14 @@
-extends Area2D
-class_name Drone
+extends AnimatableBody2D
+
 # group enemy
 @export var damage = 1
 var health = 2
 
-var move_speed = 200
+var move_speed = 150
 @onready var starting_height = global_position.y
 
 func _physics_process(delta):
 	global_position.x -= delta * move_speed
-	global_position.y = starting_height + sin(
-		Time.get_ticks_msec() * 0.001 * 4
-	) * 50
 	
 func hurt(bullet_damage):
 	health -= bullet_damage
@@ -21,4 +18,14 @@ func hurt(bullet_damage):
 func die():
 	queue_free()
 
-	
+
+func on_top_body_entered(body):
+	if body.is_in_group("player"):
+		body.velocity.y = -500
+		die()
+
+
+func on_hurtbox_body_entered(body):
+	if body.is_in_group("player"):
+		body.get_hurt()
+		die()

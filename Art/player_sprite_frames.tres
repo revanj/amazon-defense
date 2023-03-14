@@ -1,6 +1,7 @@
-[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://dn0sprsw0c560"]
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://dn0sprsw0c560"]
 
 [ext_resource type="Texture2D" uid="uid://c2w88cshohe3n" path="res://Art/player/player_idle/player_main.png" id="1_ed36o"]
+[ext_resource type="Texture2D" uid="uid://cjaeyvr28svb2" path="res://Art/player/player_jump/player_jump_1.png" id="2_brtg6"]
 [ext_resource type="Texture2D" uid="uid://d1sgrxc466qd6" path="res://Art/player/player_run/player_run_1.png" id="2_k5ljs"]
 [ext_resource type="Texture2D" uid="uid://m7i7qdrxn1p3" path="res://Art/player/player_run/player_run_2.png" id="3_k0xol"]
 [ext_resource type="Texture2D" uid="uid://d0k4lsmu374yv" path="res://Art/player/player_run/player_run_3.png" id="4_f13p8"]
@@ -17,6 +18,19 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 10.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_brtg6")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,

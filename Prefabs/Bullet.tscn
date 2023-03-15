@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h3wbw"]
 size = Vector2(22, 2)
 
-[node name="Bullet" type="Area2D"]
+[node name="Bullet" type="Area2D" groups=["bullet"]]
 scale = Vector2(3, 2.68)
 script = ExtResource("1_nfg5t")
 

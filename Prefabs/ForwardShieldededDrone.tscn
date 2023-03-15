@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dc43r8gwomtnj"]
+
+[ext_resource type="PackedScene" uid="uid://ci2fxq0ntbt3f" path="res://Prefabs/Drone.tscn" id="1_krkya"]
+[ext_resource type="PackedScene" uid="uid://dd5oo3yp7icwx" path="res://Prefabs/Shield.tscn" id="2_ci8t2"]
+
+[node name="Drone" instance=ExtResource("1_krkya")]
+
+[node name="Shield" parent="." index="3" instance=ExtResource("2_ci8t2")]
+position = Vector2(-12, 0)
+scale = Vector2(1, 1.28)

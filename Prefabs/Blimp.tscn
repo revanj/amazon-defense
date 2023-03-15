@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3mhumhef1r3q"]
+
+[ext_resource type="Script" path="res://Prefabs/Blimp.gd" id="1_w0rt1"]
+[ext_resource type="SpriteFrames" uid="uid://43obvcpe3nq2" path="res://Art/blimp/blimp_sprite_frames.tres" id="2_hxgmi"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_maiqg"]
+radius = 57.0
+height = 360.0
+
+[node name="Blimp" type="Area2D" groups=["enemy"]]
+script = ExtResource("1_w0rt1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_maiqg")
+debug_color = Color(0.992157, 0, 0.262745, 0.419608)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2.79167, 2.85714)
+sprite_frames = ExtResource("2_hxgmi")
+autoplay = "default"
+
+[node name="Anchor1" type="Node2D" parent="."]
+position = Vector2(-75, 58)
+
+[node name="Anchor2" type="Node2D" parent="."]
+position = Vector2(45, 59)

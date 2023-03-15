@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctn3w85fflbby"]
+
+[ext_resource type="Texture2D" uid="uid://lavley6sd1hq" path="res://Art/menu/deathscreen.png" id="1_2n4nb"]
+[ext_resource type="Script" path="res://EndScene.gd" id="2_t1eep"]
+
+[node name="EndScene" type="TextureRect"]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_2n4nb")
+script = ExtResource("2_t1eep")
+
+[node name="RetryButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 438.0
+offset_right = 429.0
+offset_bottom = 486.0
+text = "Try Again"
+
+[node name="MainMenuButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 536.0
+offset_top = 438.0
+offset_right = 871.0
+offset_bottom = 488.0
+text = "Main Menu"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 305.0
+offset_top = 380.0
+offset_right = 734.0
+offset_bottom = 420.0
+text = "You resisted bezos"

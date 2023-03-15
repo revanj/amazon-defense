@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://rebpp8h8daiy"]
-
-[ext_resource type="Script" path="res://Prefabs/CargoDrop.gd" id="1_cqs4t"]
-
-[node name="CargoDrop" type="Area2D"]
-script = ExtResource("1_cqs4t")

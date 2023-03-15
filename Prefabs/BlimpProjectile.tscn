@@ -1,0 +1,57 @@
+[gd_scene load_steps=11 format=3 uid="uid://fprq71w7l0ck"]
+
+[ext_resource type="Script" path="res://Prefabs/BlimpProjectile.gd" id="1_4ykef"]
+[ext_resource type="Texture2D" uid="uid://5uggcvy542of" path="res://Art/drone_yellow/package_large_1.png" id="2_l50ek"]
+[ext_resource type="Texture2D" uid="uid://cle1cr7sl77ml" path="res://Art/drone_yellow/package_large_2.png" id="3_358yu"]
+[ext_resource type="Texture2D" uid="uid://cmfch4uuse3m" path="res://Art/drone_yellow/package_large_3.png" id="4_uxb32"]
+[ext_resource type="Texture2D" uid="uid://blkpjfm2bxb2e" path="res://Art/drone_yellow/package_large_4.png" id="5_ofn2q"]
+[ext_resource type="Texture2D" uid="uid://cuttu53kcu02b" path="res://Art/drone_yellow/package_large_5.png" id="6_hj2xl"]
+[ext_resource type="Texture2D" uid="uid://b7757rst74plc" path="res://Art/drone_yellow/package_large_6.png" id="7_qefk6"]
+[ext_resource type="Texture2D" uid="uid://7v05chaoo7x1" path="res://Art/drone_yellow/package_large_7.png" id="8_pojc2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_724gr"]
+size = Vector2(22.2222, 16.9472)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y6txj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_l50ek")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_358yu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_uxb32")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ofn2q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hj2xl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qefk6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_pojc2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BlimpProjectile" type="Area2D"]
+scale = Vector2(1.8, 1.8)
+script = ExtResource("1_4ykef")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.555555, 3.74861)
+shape = SubResource("RectangleShape2D_724gr")
+
+[node name="PackageStandard" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_y6txj")
+autoplay = "default"
+
+[connection signal="body_entered" from="." to="." method="on_package_body_entered"]

@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://43obvcpe3nq2"]
+
+[ext_resource type="Texture2D" uid="uid://baxgihf3f4hv5" path="res://Art/blimp/blimp_1.png" id="1_t70ce"]
+[ext_resource type="Texture2D" uid="uid://bexjgrij203tr" path="res://Art/blimp/blimp_2.png" id="2_8kpwu"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_t70ce")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_8kpwu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

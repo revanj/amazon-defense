@@ -6,5 +6,5 @@ func on_body_entered(body):
 
 
 func on_animated_sprite_2d_frame_changed():
-	if $AnimatedSprite2D.frame == 6:
+	if $AnimatedSprite2D.frame == 4:
 		queue_free()

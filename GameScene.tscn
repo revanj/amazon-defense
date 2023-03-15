@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c6pwlogocbggn"]
+[gd_scene load_steps=19 format=3 uid="uid://c6pwlogocbggn"]
 
 [ext_resource type="Texture2D" uid="uid://dl8k28m0nh5w6" path="res://Art/background/background_2.png" id="1_q7r3u"]
 [ext_resource type="PackedScene" uid="uid://d2v11jcu7sbdl" path="res://Prefabs/Player.tscn" id="1_wrjia"]
@@ -10,8 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://dualwovlk05wq" path="res://Art/background/house.png" id="5_aa7wd"]
 [ext_resource type="Texture2D" uid="uid://dj0nxphlwq5bs" path="res://Art/background/ground.png" id="7_oo481"]
 [ext_resource type="PackedScene" uid="uid://dtiqxsodrnmd8" path="res://Prefabs/UI.tscn" id="9_pvex6"]
-[ext_resource type="PackedScene" uid="uid://dngh7kwsiyjef" path="res://Prefabs/Cart.tscn" id="11_vsy66"]
-[ext_resource type="PackedScene" uid="uid://djjewpbh4am3e" path="res://Prefabs/DroneDrop.tscn" id="12_2krpp"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_i6dii"]
 a = Vector2(-500, 0)
@@ -26,7 +24,7 @@ a = Vector2(0, 250)
 b = Vector2(0, -250)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1md5w"]
-size = Vector2(145.229, 372.054)
+size = Vector2(145.229, 428)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_loxke"]
 
@@ -40,44 +38,52 @@ normal = Vector2(1, 0)
 normal = Vector2(0, 1)
 
 [node name="World" type="Node2D"]
-scale = Vector2(1.01908, 1.22563)
 
 [node name="Background2" type="Sprite2D" parent="."]
-position = Vector2(471.504, 220.295)
-scale = Vector2(3.14336, 2.60704)
+position = Vector2(483, 272.5)
+scale = Vector2(3.22, 3.21302)
 texture = ExtResource("1_q7r3u")
 
 [node name="Bookkeeper" type="Node" parent="." node_paths=PackedStringArray("UI")]
 script = ExtResource("3_hrm4a")
 UI = NodePath("../CanvasLayer")
 
-[node name="DroneSpawner" type="Node" parent="." node_paths=PackedStringArray("timer", "drone_spawn_point", "cart_spawn_point")]
+[node name="DroneSpawner" type="Node2D" parent="." node_paths=PackedStringArray("timer")]
 script = ExtResource("2_aa5qr")
 timer = NodePath("Timer")
-drone_spawn_point = NodePath("../DroneSpawnPoint")
-cart_spawn_point = NodePath("../CartSpawnPoint")
 
 [node name="Timer" type="Timer" parent="DroneSpawner"]
 wait_time = 2.5
 autostart = true
 
+[node name="DroneSpawnPoint" type="Node2D" parent="DroneSpawner"]
+position = Vector2(1038, 92)
+
+[node name="CartSpawnPoint" type="Node2D" parent="DroneSpawner"]
+position = Vector2(1016, 429)
+
+[node name="BlimpSpawnPoint" type="Node2D" parent="DroneSpawner"]
+position = Vector2(1257.02, 66.9044)
+
 [node name="Background" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(472.976, 219.887)
-scale = Vector2(3.48172, 2.61187)
+position = Vector2(481.5, 272.296)
+scale = Vector2(3.56667, 3.17993)
 texture = ExtResource("3_fygss")
 
 [node name="Floor" type="StaticBody2D" parent="." groups=["floor"]]
-position = Vector2(419.005, 367.974)
+position = Vector2(482, 426)
+scale = Vector2(1, 1.44)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(0, 2.08334)
 shape = SubResource("SegmentShape2D_i6dii")
 
 [node name="RightBound" type="StaticBody2D" parent="."]
 position = Vector2(894.925, 193.37)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightBound"]
-position = Vector2(22.5692, 0)
+position = Vector2(67.075, 38.63)
 shape = SubResource("SegmentShape2D_f2eo7")
 
 [node name="House" type="StaticBody2D" parent="."]
@@ -91,31 +97,21 @@ shape = SubResource("SegmentShape2D_nrujo")
 position = Vector2(33.3634, 13.0542)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="House/Area2D"]
-position = Vector2(-60.839, 66.0888)
+position = Vector2(-60.839, 94.0618)
 shape = SubResource("RectangleShape2D_1md5w")
 
 [node name="House2" type="Sprite2D" parent="House"]
 texture_filter = 1
-position = Vector2(15.7004, 78.6995)
-scale = Vector2(2.97471, 2.61385)
+position = Vector2(29.8106, 109.616)
+scale = Vector2(3.51786, 3.02113)
 texture = ExtResource("5_aa7wd")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_wrjia")]
 position = Vector2(184.48, 322.283)
-scale = Vector2(2.05504, 1.55584)
+scale = Vector2(2, 2)
 
 [node name="Drone" parent="." instance=ExtResource("2_u1ppu")]
 position = Vector2(789.928, 102.804)
-
-[node name="Cart" parent="." instance=ExtResource("11_vsy66")]
-position = Vector2(768.34, 345)
-scale = Vector2(0.84, 0.8)
-
-[node name="DroneSpawnPoint" type="Node2D" parent="."]
-position = Vector2(1056.84, 128.913)
-
-[node name="CartSpawnPoint" type="Node2D" parent="."]
-position = Vector2(1038.19, 345)
 
 [node name="Bounds" type="Area2D" parent="."]
 script = ExtResource("5_2u2jn")
@@ -125,7 +121,7 @@ position = Vector2(451.388, 485.465)
 shape = SubResource("WorldBoundaryShape2D_loxke")
 
 [node name="Right" type="CollisionShape2D" parent="Bounds"]
-position = Vector2(1258.98, 136.256)
+position = Vector2(1598.5, 136.256)
 shape = SubResource("WorldBoundaryShape2D_hfynw")
 
 [node name="Left" type="CollisionShape2D" parent="Bounds"]
@@ -138,14 +134,11 @@ shape = SubResource("WorldBoundaryShape2D_wigrg")
 
 [node name="Ground" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(471.013, 403.229)
-scale = Vector2(3.14009, 2.49374)
+position = Vector2(481.25, 486.25)
+scale = Vector2(3.21167, 4.19643)
 texture = ExtResource("7_oo481")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("9_pvex6")]
-
-[node name="DroneDrop" parent="." instance=ExtResource("12_2krpp")]
-position = Vector2(759.509, 203.161)
 
 [connection signal="area_entered" from="House/Area2D" to="Bookkeeper" method="on_enemy_entered"]
 [connection signal="area_entered" from="Bounds" to="Bounds" method="on_area_entered"]

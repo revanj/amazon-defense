@@ -18,7 +18,6 @@ func hurt(bullet_damage):
 func die():
 	queue_free()
 
-
 func on_top_body_entered(body):
 	if body.is_in_group("player"):
 		body.velocity.y = -500

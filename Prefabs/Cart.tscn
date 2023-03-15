@@ -31,13 +31,14 @@ scale = Vector2(0.84, 0.8)
 script = ExtResource("1_k4s48")
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-0.315716, -32.25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(7.80537e-07, 0)
 shape = SubResource("RectangleShape2D_1qox2")
 
 [node name="Top" type="Area2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(-0.315716, -31.25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
 position = Vector2(0, -33)
@@ -45,15 +46,17 @@ scale = Vector2(3.56, 1)
 shape = SubResource("RectangleShape2D_5rm0p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.315716, -32.25)
 shape = SubResource("RectangleShape2D_cnyst")
 debug_color = Color(0.984314, 0, 0.337255, 0.419608)
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+position = Vector2(-0.315716, -32.25)
 scale = Vector2(3.897, 4)
 sprite_frames = SubResource("SpriteFrames_0776q")
-frame = 1
-frame_progress = 0.985876
+autoplay = "default"
+frame_progress = 0.697344
 
 [connection signal="body_entered" from="Area2D" to="." method="on_hurtbox_body_entered"]
 [connection signal="body_entered" from="Top" to="." method="on_top_body_entered"]

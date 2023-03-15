@@ -1,14 +1,66 @@
-[gd_scene load_steps=6 format=3 uid="uid://ci2fxq0ntbt3f"]
+[gd_scene load_steps=17 format=3 uid="uid://ci2fxq0ntbt3f"]
 
 [ext_resource type="Script" path="res://Scripts/Drone.gd" id="1_kdx86"]
 [ext_resource type="SpriteFrames" uid="uid://ceyeufoat6i0a" path="res://Art/drone_yellow/drone_yellow_sprite_frames.tres" id="2_5pjao"]
 [ext_resource type="Texture2D" uid="uid://cumm8u3ynlndu" path="res://Art/packages/package_standard.png" id="3_oecsd"]
+[ext_resource type="Texture2D" uid="uid://b7la6rvj4vay4" path="res://Art/effects/effect_death_1.png" id="4_acr66"]
+[ext_resource type="Texture2D" uid="uid://y4ahocru5vfn" path="res://Art/effects/effect_death_2.png" id="5_qkt0v"]
+[ext_resource type="Texture2D" uid="uid://7nnk70a65cat" path="res://Art/effects/effect_death_3.png" id="6_jo0h8"]
+[ext_resource type="Texture2D" uid="uid://bvu2u7s5x4sbp" path="res://Art/effects/effect_death_4.png" id="7_wnlcn"]
+[ext_resource type="Texture2D" uid="uid://da1t4f3ms8q5y" path="res://Art/effects/effect_explode_1.png" id="8_0g8uc"]
+[ext_resource type="Texture2D" uid="uid://b7ps8gl14jji" path="res://Art/effects/effect_explode_2.png" id="9_brk2p"]
+[ext_resource type="Texture2D" uid="uid://xydvh20q44i4" path="res://Art/effects/effect_explode_3.png" id="10_gcw2w"]
+[ext_resource type="Texture2D" uid="uid://uhlbajfurow0" path="res://Art/effects/effect_explode_4.png" id="11_a8h4e"]
+[ext_resource type="Texture2D" uid="uid://roek7wbsn46n" path="res://Art/effects/effect_explode_5.png" id="12_348qc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e6yf4"]
 size = Vector2(67, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c6ovr"]
 size = Vector2(40, 29)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0mmvv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_acr66")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qkt0v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jo0h8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wnlcn")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fwynn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_0g8uc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_brk2p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_gcw2w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_a8h4e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_348qc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Drone" type="Area2D" groups=["enemy"]]
 script = ExtResource("1_kdx86")
@@ -33,3 +85,21 @@ frame_progress = 0.698088
 texture_filter = 1
 position = Vector2(0, 8.40001)
 texture = ExtResource("3_oecsd")
+
+[node name="ShotDeathAnim" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+position = Vector2(1, 15)
+scale = Vector2(2.76471, 2.3125)
+sprite_frames = SubResource("SpriteFrames_0mmvv")
+frame = 3
+frame_progress = 1.0
+
+[node name="HouseDeathAnim" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+position = Vector2(1, 11)
+scale = Vector2(1.82, 1.72)
+sprite_frames = SubResource("SpriteFrames_fwynn")
+frame = 4
+frame_progress = 0.0743134

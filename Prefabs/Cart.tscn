@@ -1,8 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://dngh7kwsiyjef"]
+[gd_scene load_steps=19 format=3 uid="uid://dngh7kwsiyjef"]
 
 [ext_resource type="Script" path="res://Prefabs/Cart.gd" id="1_k4s48"]
 [ext_resource type="Texture2D" uid="uid://b266qnyy0l8b" path="res://Art/cart/cart_1.png" id="1_nsnbg"]
 [ext_resource type="Texture2D" uid="uid://cn1ig5ab1fu1v" path="res://Art/cart/cart_2.png" id="2_j5hl8"]
+[ext_resource type="Texture2D" uid="uid://b7la6rvj4vay4" path="res://Art/effects/effect_death_1.png" id="4_aqgph"]
+[ext_resource type="Texture2D" uid="uid://y4ahocru5vfn" path="res://Art/effects/effect_death_2.png" id="5_truew"]
+[ext_resource type="Texture2D" uid="uid://7nnk70a65cat" path="res://Art/effects/effect_death_3.png" id="6_hyb0d"]
+[ext_resource type="Texture2D" uid="uid://bvu2u7s5x4sbp" path="res://Art/effects/effect_death_4.png" id="7_y7740"]
+[ext_resource type="Texture2D" uid="uid://da1t4f3ms8q5y" path="res://Art/effects/effect_explode_1.png" id="8_lubbi"]
+[ext_resource type="Texture2D" uid="uid://b7ps8gl14jji" path="res://Art/effects/effect_explode_2.png" id="9_vacet"]
+[ext_resource type="Texture2D" uid="uid://xydvh20q44i4" path="res://Art/effects/effect_explode_3.png" id="10_a8bia"]
+[ext_resource type="Texture2D" uid="uid://uhlbajfurow0" path="res://Art/effects/effect_explode_4.png" id="11_f2kk1"]
+[ext_resource type="Texture2D" uid="uid://roek7wbsn46n" path="res://Art/effects/effect_explode_5.png" id="12_cpw6t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1qox2"]
 size = Vector2(83.3333, 67.5)
@@ -24,6 +33,49 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_htrft"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_aqgph")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_truew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hyb0d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_y7740")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1a3ur"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_lubbi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_vacet")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_a8bia")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_f2kk1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_cpw6t")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
 }]
 
 [node name="Cart" type="AnimatableBody2D" groups=["enemy"]]
@@ -50,13 +102,29 @@ position = Vector2(-0.315716, -32.25)
 shape = SubResource("RectangleShape2D_cnyst")
 debug_color = Color(0.984314, 0, 0.337255, 0.419608)
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-0.315716, -32.25)
 scale = Vector2(3.897, 4)
 sprite_frames = SubResource("SpriteFrames_0776q")
 autoplay = "default"
-frame_progress = 0.697344
+frame_progress = 0.510018
+
+[node name="ShotDeathAnim" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+position = Vector2(1.78571, -35.625)
+scale = Vector2(3.81653, 3.19853)
+sprite_frames = SubResource("SpriteFrames_htrft")
+frame = 3
+frame_progress = 1.0
+
+[node name="HouseDeathAnim" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+position = Vector2(1.19048, -38.75)
+scale = Vector2(2.57143, 2.35)
+sprite_frames = SubResource("SpriteFrames_1a3ur")
 
 [connection signal="body_entered" from="Area2D" to="." method="on_hurtbox_body_entered"]
 [connection signal="body_entered" from="Top" to="." method="on_top_body_entered"]

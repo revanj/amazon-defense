@@ -22,19 +22,42 @@ func _physics_process(delta):
 	
 func hurt(bullet_damage):
 	health -= bullet_damage
-	if health <= 0:
+	if health <= 0 && moving:
 		die()
 		
 func die():
+	if moving == false:
+		return
+	ScoreKeeper.score += 1
 	moving = false
 	shot_death_anim.modulate.a = 1.0
 	shot_death_anim.play("default")
+	while true:
+		if shot_death_anim.frame == 2:
+			$AnimatedSprite2D.visible = false
+			$CollisionShape2D.visible = false
+			$CollisionShape2D2.visible = false
+			break
+		else:
+			await shot_death_anim.frame_changed
+	
+	
 	await shot_death_anim.animation_finished
 	queue_free()
 
 func collide():
+	if moving == false:
+		return
 	moving = false
 	house_death_anim.modulate.a = 1.0
 	house_death_anim.play("default")
+	while true:
+		if house_death_anim.frame == 2:
+			$AnimatedSprite2D.visible = false
+			$CollisionShape2D.visible = false
+			$CollisionShape2D2.visible = false
+			break
+		else:
+			await house_death_anim.frame_changed
 	await house_death_anim.animation_finished
 	queue_free()

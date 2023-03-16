@@ -42,7 +42,7 @@ shape = SubResource("CircleShape2D_d5rr4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-0.999996, -18)
+position = Vector2(-1, -11)
 scale = Vector2(1.86667, 2.13333)
 sprite_frames = SubResource("SpriteFrames_a27hv")
 autoplay = "default"

@@ -57,9 +57,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("12_348qc")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
-"speed": 5.0
+"speed": 12.0
 }]
 
 [node name="Drone" type="Area2D" groups=["enemy"]]
@@ -101,5 +101,3 @@ texture_filter = 1
 position = Vector2(1, 11)
 scale = Vector2(1.82, 1.72)
 sprite_frames = SubResource("SpriteFrames_fwynn")
-frame = 4
-frame_progress = 0.0743134

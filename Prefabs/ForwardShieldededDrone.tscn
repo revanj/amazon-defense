@@ -5,6 +5,6 @@
 
 [node name="Drone" instance=ExtResource("1_krkya")]
 
-[node name="Shield" parent="." index="3" instance=ExtResource("2_ci8t2")]
-position = Vector2(-12, 0)
-scale = Vector2(1, 1.28)
+[node name="Shield" parent="AnimatedSprite2D" index="1" instance=ExtResource("2_ci8t2")]
+position = Vector2(-4.2985, 0)
+scale = Vector2(0.358209, 0.448)

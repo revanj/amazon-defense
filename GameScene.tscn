@@ -60,7 +60,7 @@ autostart = true
 position = Vector2(1038, 92)
 
 [node name="CartSpawnPoint" type="Node2D" parent="DroneSpawner"]
-position = Vector2(1016, 429)
+position = Vector2(1017.5, 453)
 
 [node name="BlimpSpawnPoint" type="Node2D" parent="DroneSpawner"]
 position = Vector2(1257.02, 66.9044)
@@ -72,7 +72,7 @@ scale = Vector2(3.56667, 3.17993)
 texture = ExtResource("3_fygss")
 
 [node name="Floor" type="StaticBody2D" parent="." groups=["floor"]]
-position = Vector2(482, 426)
+position = Vector2(483.5, 450)
 scale = Vector2(1, 1.44)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
@@ -87,7 +87,7 @@ position = Vector2(67.075, 38.63)
 shape = SubResource("SegmentShape2D_f2eo7")
 
 [node name="House" type="StaticBody2D" parent="."]
-position = Vector2(68.6894, 106.884)
+position = Vector2(68.6894, 130)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="House"]
 position = Vector2(-8.83149, 89.7498)
@@ -134,12 +134,13 @@ shape = SubResource("WorldBoundaryShape2D_wigrg")
 
 [node name="Ground" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(481.25, 486.25)
+position = Vector2(482.75, 510.25)
 scale = Vector2(3.21167, 4.19643)
 texture = ExtResource("7_oo481")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("9_pvex6")]
 
 [connection signal="area_entered" from="House/Area2D" to="Bookkeeper" method="on_enemy_entered"]
+[connection signal="body_entered" from="House/Area2D" to="Bookkeeper" method="on_area_2d_body_entered"]
 [connection signal="area_entered" from="Bounds" to="Bounds" method="on_area_entered"]
 [connection signal="body_entered" from="Bounds" to="Bounds" method="on_body_entered"]

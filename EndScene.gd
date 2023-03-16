@@ -7,6 +7,10 @@ func _ready():
 	$RichTextLabel.text = "You resisted " + str(ScoreKeeper.score) + " of Bezos' Drones"
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _on_retry_button_pressed():
+	get_tree().change_scene_to_file("res://GameScene.tscn")
+
+
+
+func _on_main_menu_button_pressed():
+	get_tree().change_scene_to_file("res://TitleScene.tscn")

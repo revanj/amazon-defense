@@ -2,7 +2,7 @@ extends Area2D
 
 # group enemy
 @export var damage = 2
-var health = 4
+var health = 8
 
 var moving = true
 

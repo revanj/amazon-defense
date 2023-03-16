@@ -7,6 +7,11 @@ var health = 2
 var moving = true
 
 var move_speed = 200
+
+var phase = 0
+var ang_freq = 0.001 * 4
+var amp = 50
+
 @onready var starting_height = global_position.y
 
 @onready var shot_death_anim = $ShotDeathAnim
@@ -17,8 +22,8 @@ func _physics_process(delta):
 		return
 	global_position.x -= delta * move_speed
 	global_position.y = starting_height + sin(
-		Time.get_ticks_msec() * 0.001 * 4
-	) * 50
+		Time.get_ticks_msec() * ang_freq
+	) * amp
 	
 func hurt(bullet_damage):
 	health -= bullet_damage

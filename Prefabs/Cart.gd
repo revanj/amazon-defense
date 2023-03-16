@@ -1,10 +1,10 @@
-extends AnimatableBody2D
+extends Node2D
 
 # group enemy
 @export var damage = 1
 var health = 2
 
-var move_speed = 150
+var move_speed = 150.0
 @onready var starting_height = global_position.y
 
 var moving = true
@@ -23,6 +23,7 @@ func hurt(bullet_damage):
 		die()
 		
 func die():
+	print("cart die")
 	if !moving:
 		return
 	moving = false
@@ -40,6 +41,7 @@ func die():
 	queue_free()
 
 func collide():
+	print("cart collide")
 	if !moving:
 		return
 	ScoreKeeper.score += 1

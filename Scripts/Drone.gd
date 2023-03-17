@@ -43,9 +43,9 @@ func die():
 	shot_death_anim.play("default")
 	while true:
 		if shot_death_anim.frame == 2:
-			$AnimatedSprite2D.visible = false
-			$CollisionShape2D.visible = false
-			$CollisionShape2D2.visible = false
+			$AnimatedSprite2D.queue_free()
+			$CollisionShape2D.queue_free()
+			$CollisionShape2D2.queue_free()
 			break
 		else:
 			await shot_death_anim.frame_changed
@@ -57,16 +57,19 @@ func die():
 func collide():
 	if moving == false:
 		return
+	$CollisionSoundASP.play()
 	moving = false
 	house_death_anim.modulate.a = 1.0
 	house_death_anim.play("default")
 	while true:
 		if house_death_anim.frame == 2:
-			$AnimatedSprite2D.visible = false
-			$CollisionShape2D.visible = false
-			$CollisionShape2D2.visible = false
+			$AnimatedSprite2D.queue_free()
+			$CollisionShape2D.queue_free()
+			$CollisionShape2D2.queue_free()
 			break
 		else:
 			await house_death_anim.frame_changed
 	await house_death_anim.animation_finished
+	house_death_anim.visible = false
+	await $CollisionSoundASP.finished
 	queue_free()

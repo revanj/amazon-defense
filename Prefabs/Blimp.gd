@@ -67,6 +67,7 @@ func die():
 	if !moving:
 		return
 	$DeathSoundASP.play()
+	$PopASP.play()
 	ScoreKeeper.score += 1
 	moving = false
 	mainsprite.visible = false

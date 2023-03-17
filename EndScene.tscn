@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctn3w85fflbby"]
+[gd_scene load_steps=11 format=3 uid="uid://ctn3w85fflbby"]
 
 [ext_resource type="Texture2D" uid="uid://lavley6sd1hq" path="res://Art/menu/deathscreen.png" id="1_2n4nb"]
 [ext_resource type="Script" path="res://EndScene.gd" id="2_t1eep"]
+[ext_resource type="FontFile" uid="uid://csjgvwmrc1vpn" path="res://Art/font/joystix monospace.otf" id="3_a2t1c"]
+[ext_resource type="Texture2D" uid="uid://dc8sreihj38bo" path="res://Art/buttons/button_restart_default.png" id="3_nrce8"]
+[ext_resource type="AudioStream" uid="uid://bdi4e1oj3ytf3" path="res://Sounds/lose.wav" id="3_shtp3"]
+[ext_resource type="Texture2D" uid="uid://kcj8dok435w0" path="res://Art/buttons/button_restart_click.png" id="4_wb3ho"]
+[ext_resource type="Texture2D" uid="uid://crgo3d84yojwy" path="res://Art/buttons/button_restart_hover.png" id="5_ygol3"]
+[ext_resource type="Texture2D" uid="uid://bxu2x86rguwqh" path="res://Art/buttons/button_menu_default.png" id="6_46bg2"]
+[ext_resource type="Texture2D" uid="uid://7g38gt527sot" path="res://Art/buttons/button_menu_click.png" id="7_vxb8m"]
+[ext_resource type="Texture2D" uid="uid://inpcqfcvbbnh" path="res://Art/buttons/button_menu_hover.png" id="8_tw83d"]
 
 [node name="EndScene" type="TextureRect"]
 texture_filter = 1
@@ -13,29 +21,50 @@ grow_vertical = 2
 texture = ExtResource("1_2n4nb")
 script = ExtResource("2_t1eep")
 
-[node name="RetryButton" type="Button" parent="."]
+[node name="RetryButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 96.0
-offset_top = 438.0
-offset_right = 429.0
-offset_bottom = 486.0
-text = "Try Again"
+offset_left = 117.0
+offset_top = 415.0
+offset_right = 450.0
+offset_bottom = 512.0
+texture_normal = ExtResource("3_nrce8")
+texture_pressed = ExtResource("4_wb3ho")
+texture_hover = ExtResource("5_ygol3")
+stretch_mode = 0
 
-[node name="MainMenuButton" type="Button" parent="."]
+[node name="MainMenuButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 536.0
-offset_top = 438.0
-offset_right = 871.0
-offset_bottom = 488.0
-text = "Main Menu"
+offset_left = 499.0
+offset_top = 413.0
+offset_right = 834.0
+offset_bottom = 511.0
+texture_normal = ExtResource("6_46bg2")
+texture_pressed = ExtResource("7_vxb8m")
+texture_hover = ExtResource("8_tw83d")
+stretch_mode = 0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 305.0
-offset_top = 380.0
-offset_right = 734.0
-offset_bottom = 420.0
+[node name="RichTextLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -350.0
+offset_top = -158.0
+offset_right = 297.0
+offset_bottom = -118.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_a2t1c")
+theme_override_font_sizes/font_size = 19
 text = "You resisted bezos"
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_shtp3")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="pressed" from="RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="MainMenuButton" to="." method="_on_main_menu_button_pressed"]

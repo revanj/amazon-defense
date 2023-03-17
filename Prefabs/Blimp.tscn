@@ -1,18 +1,21 @@
-[gd_scene load_steps=18 format=3 uid="uid://c3mhumhef1r3q"]
+[gd_scene load_steps=22 format=3 uid="uid://c3mhumhef1r3q"]
 
 [ext_resource type="Script" path="res://Prefabs/Blimp.gd" id="1_w0rt1"]
 [ext_resource type="SpriteFrames" uid="uid://43obvcpe3nq2" path="res://Art/blimp/blimp_sprite_frames.tres" id="2_hxgmi"]
 [ext_resource type="Texture2D" uid="uid://m5opaorderk8" path="res://Art/effects/effect_explodeair_1.png" id="3_6pmaf"]
+[ext_resource type="Texture2D" uid="uid://dxdbsflgpj06j" path="res://Art/effects/effect_explodelarge_1.png" id="3_rss5d"]
+[ext_resource type="Texture2D" uid="uid://cdgrc088y0np8" path="res://Art/effects/effect_explodelarge_2.png" id="4_ahmw7"]
 [ext_resource type="Texture2D" uid="uid://bqqhieobcqgim" path="res://Art/effects/effect_explodeair_2.png" id="4_fs2kx"]
 [ext_resource type="Texture2D" uid="uid://b3b1s2wkiw2s" path="res://Art/effects/effect_explodeair_3.png" id="5_8onob"]
+[ext_resource type="Texture2D" uid="uid://dw7us42407vjg" path="res://Art/effects/effect_explodelarge_3.png" id="5_oth0i"]
+[ext_resource type="Texture2D" uid="uid://dxic05cctwi30" path="res://Art/effects/effect_explodelarge_4.png" id="6_5jv8n"]
 [ext_resource type="Texture2D" uid="uid://c7f48yv25xq1d" path="res://Art/effects/effect_explodeair_4.png" id="6_8ttch"]
-[ext_resource type="Texture2D" uid="uid://da1t4f3ms8q5y" path="res://Art/effects/effect_explode_1.png" id="7_h3xhs"]
-[ext_resource type="Texture2D" uid="uid://b7ps8gl14jji" path="res://Art/effects/effect_explode_2.png" id="8_b3j7o"]
-[ext_resource type="Texture2D" uid="uid://xydvh20q44i4" path="res://Art/effects/effect_explode_3.png" id="9_lnayh"]
-[ext_resource type="Texture2D" uid="uid://uhlbajfurow0" path="res://Art/effects/effect_explode_4.png" id="10_0bb00"]
-[ext_resource type="Texture2D" uid="uid://roek7wbsn46n" path="res://Art/effects/effect_explode_5.png" id="11_3tkbm"]
+[ext_resource type="Texture2D" uid="uid://67q8griiqk5e" path="res://Art/effects/effect_explodelarge_5.png" id="7_ip1l8"]
+[ext_resource type="Texture2D" uid="uid://2q8p7j6525s1" path="res://Art/effects/effect_explodelarge_6.png" id="8_38pie"]
+[ext_resource type="Texture2D" uid="uid://b2na21jva4vho" path="res://Art/effects/effect_explodeair_5.png" id="12_886qq"]
 [ext_resource type="AudioStream" uid="uid://dbqddpqj6bnt8" path="res://Sounds/blimp_hit.wav" id="12_pso1a"]
 [ext_resource type="AudioStream" uid="uid://bexumcmm4yvhm" path="res://Sounds/enemy_death.wav" id="13_repmp"]
+[ext_resource type="AudioStream" uid="uid://cukj626nlb4kl" path="res://Sounds/blimp_pop.wav" id="14_xyjpa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_maiqg"]
 radius = 57.0
@@ -22,19 +25,22 @@ height = 360.0
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_h3xhs")
+"texture": ExtResource("3_rss5d")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_b3j7o")
+"texture": ExtResource("4_ahmw7")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_lnayh")
+"texture": ExtResource("5_oth0i")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_0bb00")
+"texture": ExtResource("6_5jv8n")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_3tkbm")
+"texture": ExtResource("7_ip1l8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_38pie")
 }],
 "loop": false,
 "name": &"default",
@@ -55,6 +61,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("6_8ttch")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_886qq")
 }],
 "loop": false,
 "name": &"default",
@@ -64,6 +73,11 @@ animations = [{
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_eyoaf"]
 streams_count = 1
 stream_0/stream = ExtResource("12_pso1a")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cpjy6"]
+streams_count = 1
+stream_0/stream = ExtResource("14_xyjpa")
 stream_0/weight = 1.0
 
 [node name="Blimp" type="Area2D" groups=["enemy"]]
@@ -90,24 +104,24 @@ position = Vector2(45, 59)
 [node name="CollisionAnim" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 texture_filter = 1
-position = Vector2(-97, -8)
-scale = Vector2(4.52, 4.04)
+position = Vector2(-94, -5)
+scale = Vector2(3.08395, 2.78703)
 sprite_frames = SubResource("SpriteFrames_seefn")
 frame_progress = 0.566673
 
 [node name="CollisionAnim2" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 texture_filter = 1
-position = Vector2(68, -8)
-scale = Vector2(4.52, 4.04)
+position = Vector2(67, -8)
+scale = Vector2(3.08395, 2.78703)
 sprite_frames = SubResource("SpriteFrames_seefn")
-frame_progress = 0.629066
+frame_progress = 0.566673
 
 [node name="DeathAnim" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 texture_filter = 1
-position = Vector2(-20, 0.999999)
-scale = Vector2(6.01042, 5.26042)
+position = Vector2(-30, -4)
+scale = Vector2(3.60761, 3.34011)
 sprite_frames = SubResource("SpriteFrames_swcjr")
 
 [node name="ShotPlayerASP" type="AudioStreamPlayer2D" parent="."]
@@ -115,3 +129,6 @@ stream = SubResource("AudioStreamRandomizer_eyoaf")
 
 [node name="DeathSoundASP" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_repmp")
+
+[node name="PopASP" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_cpjy6")

@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cviekwwac03om"]
+[gd_scene load_steps=7 format=3 uid="uid://cviekwwac03om"]
 
 [ext_resource type="Texture2D" uid="uid://b8sp2nbn2yhs3" path="res://Art/menu/title_scene.png" id="1_moohe"]
 [ext_resource type="Script" path="res://TitleScene.gd" id="2_6txhw"]
+[ext_resource type="Texture2D" uid="uid://b8p0achdunt4a" path="res://Art/buttons/button_play_default.png" id="3_j4kmp"]
+[ext_resource type="AudioStream" uid="uid://3ws3x25f8o3o" path="res://Sounds/Ketsa - Reaction Satisfaction.mp3" id="3_p6d12"]
+[ext_resource type="Texture2D" uid="uid://db4bugnmpa52e" path="res://Art/buttons/button_play_click.png" id="4_8ebwh"]
+[ext_resource type="Texture2D" uid="uid://c7lcvd118fk3e" path="res://Art/buttons/button_play_hover.png" id="5_g7vq1"]
 
 [node name="TitleScene" type="TextureRect"]
 anchors_preset = 15
@@ -12,21 +16,20 @@ grow_vertical = 2
 texture = ExtResource("1_moohe")
 script = ExtResource("2_6txhw")
 
-[node name="PlayButton" type="Button" parent="."]
+[node name="PlayButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 579.0
-offset_top = 367.0
-offset_right = 908.0
-offset_bottom = 414.0
-text = "Play"
+offset_left = 545.0
+offset_top = 375.0
+offset_right = 874.0
+offset_bottom = 487.0
+texture_normal = ExtResource("3_j4kmp")
+texture_pressed = ExtResource("4_8ebwh")
+texture_hover = ExtResource("5_g7vq1")
+stretch_mode = 0
 
-[node name="QuitButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 577.0
-offset_top = 438.0
-offset_right = 906.0
-offset_bottom = 485.0
-text = "Quit
-"
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_p6d12")
+volume_db = -2.0
+autoplay = true
 
 [connection signal="pressed" from="PlayButton" to="." method="on_play_button_pressed"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://3ws3x25f8o3o"
+path="res://.godot/imported/Ketsa - Reaction Satisfaction.mp3-08c84820462c14bbd14dba7916e9fccf.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Ketsa - Reaction Satisfaction.mp3"
+dest_files=["res://.godot/imported/Ketsa - Reaction Satisfaction.mp3-08c84820462c14bbd14dba7916e9fccf.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

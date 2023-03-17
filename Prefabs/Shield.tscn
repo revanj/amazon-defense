@@ -1,11 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://dd5oo3yp7icwx"]
+[gd_scene load_steps=6 format=3 uid="uid://dd5oo3yp7icwx"]
 
 [ext_resource type="Texture2D" uid="uid://clbq7gbpqmirw" path="res://Art/drone_yellow/drone_shield_big.png" id="1_o3hwo"]
 [ext_resource type="Script" path="res://Prefabs/Shield.gd" id="1_sm77e"]
+[ext_resource type="AudioStream" uid="uid://craa4i6vsv28q" path="res://Sounds/reflect_sound.wav" id="3_leae8"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_2bhy6"]
 a = Vector2(0, -10)
 b = Vector2(0, 12)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_t7hw1"]
+streams_count = 1
+stream_0/stream = ExtResource("3_leae8")
+stream_0/weight = 1.0
 
 [node name="Shield" type="Area2D"]
 script = ExtResource("1_sm77e")
@@ -20,5 +26,8 @@ texture = ExtResource("1_o3hwo")
 position = Vector2(-44, 24)
 scale = Vector2(0.888179, 2.62387)
 shape = SubResource("SegmentShape2D_2bhy6")
+
+[node name="ReflectASP" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_t7hw1")
 
 [connection signal="area_entered" from="." to="." method="on_area_entered"]

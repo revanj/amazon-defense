@@ -27,6 +27,7 @@ func _process(_delta):
 	# the player is only allowed to fire when they are not hurt
 	# i.e. when the player can be hurt
 	if (Input.is_action_just_pressed("fire") && can_be_hurt):
+		$GunshotASP2D.play()
 		var bullet_inst = bullet.instantiate()
 		bullet_inst.global_position = gun_anchor.global_position
 		bullet_inst.global_rotation = gun_anchor.global_rotation

@@ -38,6 +38,9 @@ func _physics_process(delta):
 	global_position.x -= delta * move_speed
 	
 func hurt(bullet_damage):
+	if !moving:
+		return
+	$ShotPlayerASP.play()
 	health -= bullet_damage
 	if health <= 0:
 		die()
@@ -63,6 +66,7 @@ func collide():
 func die():
 	if !moving:
 		return
+	$DeathSoundASP.play()
 	ScoreKeeper.score += 1
 	moving = false
 	mainsprite.visible = false

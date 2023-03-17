@@ -12,20 +12,25 @@ var moving = true
 @onready var shot_death_anim = $ShotDeathAnim
 @onready var house_death_anim = $HouseDeathAnim
 
+
 func _physics_process(delta):
 	if !moving:
 		return
 	global_position.x -= delta * move_speed
 	
 func hurt(bullet_damage):
+	if !moving:
+		return
+	$MetalShotASP.play()
 	health -= bullet_damage
 	if health <= 0:
 		die()
 		
+		
 func die():
-	print("cart die")
 	if !moving:
 		return
+	$DeathSoundASP.play()
 	moving = false
 	shot_death_anim.modulate.a = 1.0
 	shot_death_anim.play("default")
@@ -38,6 +43,8 @@ func die():
 		else:
 			await shot_death_anim.frame_changed
 	await shot_death_anim.animation_finished
+	shot_death_anim.visible = false
+	await $DeathSoundASP.finished
 	queue_free()
 
 func collide():

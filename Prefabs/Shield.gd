@@ -8,3 +8,4 @@ func on_area_entered(area):
 		bullet.direction.x = -bullet.direction.x
 		bullet.global_transform.x.x = -bullet.global_transform.x.x
 		bullet.global_transform.y.x = -bullet.global_transform.y.x
+		$ReflectASP.play(0.2)

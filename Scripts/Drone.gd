@@ -26,6 +26,9 @@ func _physics_process(delta):
 	) * amp
 	
 func hurt(bullet_damage):
+	if !moving:
+		return
+	$HurtSoundASP.play()
 	health -= bullet_damage
 	if health <= 0 && moving:
 		die()
@@ -33,6 +36,7 @@ func hurt(bullet_damage):
 func die():
 	if moving == false:
 		return
+	$DeathSoundASP.play()
 	ScoreKeeper.score += 1
 	moving = false
 	shot_death_anim.modulate.a = 1.0
@@ -45,9 +49,9 @@ func die():
 			break
 		else:
 			await shot_death_anim.frame_changed
-	
-	
 	await shot_death_anim.animation_finished
+	shot_death_anim.visible = false
+	await $DeathSoundASP.finished
 	queue_free()
 
 func collide():

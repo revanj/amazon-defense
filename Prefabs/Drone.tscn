@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ci2fxq0ntbt3f"]
+[gd_scene load_steps=20 format=3 uid="uid://ci2fxq0ntbt3f"]
 
 [ext_resource type="Script" path="res://Scripts/Drone.gd" id="1_kdx86"]
 [ext_resource type="SpriteFrames" uid="uid://ceyeufoat6i0a" path="res://Art/drone_yellow/drone_yellow_sprite_frames.tres" id="2_5pjao"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://xydvh20q44i4" path="res://Art/effects/effect_explode_3.png" id="10_gcw2w"]
 [ext_resource type="Texture2D" uid="uid://uhlbajfurow0" path="res://Art/effects/effect_explode_4.png" id="11_a8h4e"]
 [ext_resource type="Texture2D" uid="uid://roek7wbsn46n" path="res://Art/effects/effect_explode_5.png" id="12_348qc"]
+[ext_resource type="AudioStream" uid="uid://34jmnuovmu6i" path="res://Sounds/bullet-metal-impact.wav" id="13_v65fv"]
+[ext_resource type="AudioStream" uid="uid://bexumcmm4yvhm" path="res://Sounds/enemy_death.wav" id="14_x2mbe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e6yf4"]
 size = Vector2(67, 20)
@@ -62,6 +64,11 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1jceo"]
+streams_count = 1
+stream_0/stream = ExtResource("13_v65fv")
+stream_0/weight = 1.0
+
 [node name="Drone" type="Area2D" groups=["enemy"]]
 script = ExtResource("1_kdx86")
 
@@ -101,3 +108,11 @@ texture_filter = 1
 position = Vector2(1, 11)
 scale = Vector2(1.82, 1.72)
 sprite_frames = SubResource("SpriteFrames_fwynn")
+
+[node name="HurtSoundASP" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_1jceo")
+volume_db = -5.0
+pitch_scale = 1.5
+
+[node name="DeathSoundASP" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_x2mbe")

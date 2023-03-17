@@ -1,13 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2v11jcu7sbdl"]
+[gd_scene load_steps=8 format=3 uid="uid://d2v11jcu7sbdl"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_ny4so"]
 [ext_resource type="SpriteFrames" uid="uid://dn0sprsw0c560" path="res://Art/player_sprite_frames.tres" id="2_girq4"]
 [ext_resource type="Texture2D" uid="uid://dlfeoy5al4kls" path="res://Art/player/player_idle/player_arms.png" id="3_q7egf"]
 [ext_resource type="Texture2D" uid="uid://bjysbp3qw5wcv" path="res://Art/player/weapon_rifle.png" id="4_py2ea"]
+[ext_resource type="AudioStream" uid="uid://bgue8wf1aso2l" path="res://Sounds/mixkit-game-gun-shot-1662.mp3" id="5_7uuer"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_io2uy"]
 radius = 13.0
 height = 60.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7k1f0"]
+streams_count = 1
+stream_0/stream = ExtResource("5_7uuer")
+stream_0/weight = 1.0
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("gun_anchor") groups=["player"]]
 scale = Vector2(1, 0.76)
@@ -44,3 +50,7 @@ offset = Vector2(13, 0)
 
 [node name="GunTip" type="Node2D" parent="GunAnchor/PlayerArms/WeaponRifle"]
 position = Vector2(24.2669, -1.24158)
+
+[node name="GunshotASP2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_7k1f0")
+max_polyphony = 5

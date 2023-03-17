@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c3mhumhef1r3q"]
+[gd_scene load_steps=18 format=3 uid="uid://c3mhumhef1r3q"]
 
 [ext_resource type="Script" path="res://Prefabs/Blimp.gd" id="1_w0rt1"]
 [ext_resource type="SpriteFrames" uid="uid://43obvcpe3nq2" path="res://Art/blimp/blimp_sprite_frames.tres" id="2_hxgmi"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://xydvh20q44i4" path="res://Art/effects/effect_explode_3.png" id="9_lnayh"]
 [ext_resource type="Texture2D" uid="uid://uhlbajfurow0" path="res://Art/effects/effect_explode_4.png" id="10_0bb00"]
 [ext_resource type="Texture2D" uid="uid://roek7wbsn46n" path="res://Art/effects/effect_explode_5.png" id="11_3tkbm"]
+[ext_resource type="AudioStream" uid="uid://dbqddpqj6bnt8" path="res://Sounds/blimp_hit.wav" id="12_pso1a"]
+[ext_resource type="AudioStream" uid="uid://bexumcmm4yvhm" path="res://Sounds/enemy_death.wav" id="13_repmp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_maiqg"]
 radius = 57.0
@@ -59,6 +61,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_eyoaf"]
+streams_count = 1
+stream_0/stream = ExtResource("12_pso1a")
+stream_0/weight = 1.0
+
 [node name="Blimp" type="Area2D" groups=["enemy"]]
 script = ExtResource("1_w0rt1")
 
@@ -102,3 +109,9 @@ texture_filter = 1
 position = Vector2(-20, 0.999999)
 scale = Vector2(6.01042, 5.26042)
 sprite_frames = SubResource("SpriteFrames_swcjr")
+
+[node name="ShotPlayerASP" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_eyoaf")
+
+[node name="DeathSoundASP" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_repmp")

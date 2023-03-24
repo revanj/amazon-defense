@@ -4,12 +4,12 @@
 [ext_resource type="Script" path="res://EndScene.gd" id="2_t1eep"]
 [ext_resource type="FontFile" uid="uid://csjgvwmrc1vpn" path="res://Art/font/joystix monospace.otf" id="3_a2t1c"]
 [ext_resource type="Texture2D" uid="uid://dc8sreihj38bo" path="res://Art/buttons/button_restart_default.png" id="3_nrce8"]
-[ext_resource type="AudioStream" uid="uid://bdi4e1oj3ytf3" path="res://Sounds/lose.wav" id="3_shtp3"]
 [ext_resource type="Texture2D" uid="uid://kcj8dok435w0" path="res://Art/buttons/button_restart_click.png" id="4_wb3ho"]
 [ext_resource type="Texture2D" uid="uid://crgo3d84yojwy" path="res://Art/buttons/button_restart_hover.png" id="5_ygol3"]
 [ext_resource type="Texture2D" uid="uid://bxu2x86rguwqh" path="res://Art/buttons/button_menu_default.png" id="6_46bg2"]
 [ext_resource type="Texture2D" uid="uid://7g38gt527sot" path="res://Art/buttons/button_menu_click.png" id="7_vxb8m"]
 [ext_resource type="Texture2D" uid="uid://inpcqfcvbbnh" path="res://Art/buttons/button_menu_hover.png" id="8_tw83d"]
+[ext_resource type="AudioStream" uid="uid://cs8sn2u88w761" path="res://Sounds/amazon_defender_death_noise_for_revan_final.wav" id="10_iyp1v"]
 
 [node name="EndScene" type="TextureRect"]
 texture_filter = 1
@@ -62,7 +62,7 @@ text = "You resisted bezos"
 horizontal_alignment = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_shtp3")
+stream = ExtResource("10_iyp1v")
 volume_db = -10.0
 autoplay = true
 

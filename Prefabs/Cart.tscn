@@ -86,7 +86,7 @@ streams_count = 1
 stream_0/stream = ExtResource("13_siveh")
 stream_0/weight = 1.0
 
-[node name="Cart" type="Area2D" groups=["enemy"]]
+[node name="Cart" type="Area2D" groups=["cart", "enemy"]]
 scale = Vector2(0.84, 0.8)
 script = ExtResource("1_k4s48")
 

@@ -53,7 +53,7 @@ func send_drone():
 	var drone_bottom_height = 42
 	var max_amp =(
 			(bottom - drone_bottom_height) - (top + drone_top_height)
-		) / 2 * 0.8 # taking up the entire lane seems excessvie
+		) / 2.0 * 0.8 # taking up the entire lane seems excessvie
 	var min_amp = 20
 	var min_drone_speed = 150
 	var max_drone_speed = 230
@@ -79,7 +79,7 @@ func cart_spawn_coro():
 	while true:
 		var base_spawn_time = 3
 		send_cart()
-		var time_to_wait = base_spawn_time / (1 + 1 / 100 * time_elapsed) * randf_range(0.9,1.1)
+		var time_to_wait = base_spawn_time / (1.0 + 1.0 / 100.0 * time_elapsed) * randf_range(0.9,1.1)
 		await get_tree().create_timer(time_to_wait).timeout
 
 func send_cart():

@@ -17,16 +17,21 @@ var bullet = preload("res://Prefabs/Bullet.tscn")
 
 var is_hurting = false
 var can_be_hurt = true
+var hurt_stun = false
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
+var can_shoot = true
+
+func shoot_maintainer():
+	can_shoot = false
+	await get_tree().create_timer(0.15).timeout
+	can_shoot = true
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	# the player is only allowed to fire when they are not hurt
 	# i.e. when the player can be hurt
-	if (Input.is_action_just_pressed("fire") && can_be_hurt):
+	if (Input.is_action_just_pressed("fire") && !hurt_stun && can_shoot):
+		shoot_maintainer()
 		$GunshotASP2D.play_poly()
 		var bullet_inst = bullet.instantiate()
 		bullet_inst.global_position = gun_anchor.global_position
@@ -43,10 +48,10 @@ func _physics_process(_delta):
 	if Input.is_action_pressed("right"):
 		input_dir += 1
 	
-	if !can_be_hurt:
+	if hurt_stun:
 		input_dir = 0
 		
-	if !can_be_hurt:
+	if hurt_stun:
 		animated_sprite.play("hurt")
 	else:
 		if !is_on_floor():
@@ -64,7 +69,7 @@ func _physics_process(_delta):
 	else:
 		animated_sprite.speed_scale = -1
 	
-	if can_be_hurt:
+	if !hurt_stun:
 		animated_sprite.flip_h = !(facing_dir == 1)
 		gun_anchor.position = Vector2(
 			anchor_start_pos.x * facing_dir,
@@ -77,7 +82,7 @@ func _physics_process(_delta):
 	if is_on_floor() && velocity.y > 0:
 		velocity.y = 0
 	
-	if can_be_hurt:
+	if !hurt_stun:
 		velocity.x =  input_dir * walk_speed
 	else:
 		velocity.x = 0
@@ -86,7 +91,7 @@ func _physics_process(_delta):
 	if velocity.y > max_fall_speed:
 		velocity.y = max_fall_speed
 	
-	if !can_be_hurt:
+	if hurt_stun:
 		velocity.y = 0
 	
 	move_and_slide()
@@ -96,13 +101,17 @@ func get_hurt():
 		return
 	$HurtSound.play()
 	can_be_hurt = false
+	hurt_stun = true
+
+	await get_tree().create_timer(0.6).timeout
+	
+	hurt_stun = false
+	
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "modulate", Color.RED, 0.1)
-	tween.tween_property(self, "modulate", Color.WHITE, 0.1)
-	tween.tween_property(self, "modulate", Color.RED, 0.1)
-	tween.tween_property(self, "modulate", Color.WHITE, 0.1)
-	tween.tween_property(self, "modulate", Color.RED, 0.1)
-	tween.tween_property(self, "modulate", Color.WHITE, 0.1)
-	tween.tween_property(self, "modulate", Color.RED, 0.1)
-	tween.tween_property(self, "modulate", Color.WHITE, 0.1)
+	var gap_time = 0.08
+	var loop_count = 5
+	for i in range(loop_count):
+		tween.tween_property(self, "modulate", Color.TRANSPARENT, gap_time)
+		tween.tween_property(self, "modulate", Color.WHITE, gap_time)
+	
 	tween.tween_callback(func(): can_be_hurt = true)

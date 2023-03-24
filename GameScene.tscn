@@ -104,8 +104,8 @@ shape = SubResource("RectangleShape2D_1md5w")
 
 [node name="House2" type="Sprite2D" parent="House"]
 texture_filter = 1
-position = Vector2(70.8106, 109.616)
-scale = Vector2(3.57692, 3.02113)
+position = Vector2(70.8106, 97.0581)
+scale = Vector2(3.57692, 3.198)
 texture = ExtResource("5_aa7wd")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_wrjia")]

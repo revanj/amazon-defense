@@ -8,9 +8,16 @@ func on_body_entered(body):
 		body.get_hurt()
 
 
+
+
 func on_animated_sprite_2d_frame_changed():
 	if $AnimatedSprite2D.frame == 4:
 		$CollisionShape2D.queue_free()
 		$AnimatedSprite2D.queue_free()
 		await $AudioStreamPlayer2D.finished
 		queue_free()
+
+
+func _on_area_entered(area):
+	if area.is_in_group("cart"):
+		area.die()

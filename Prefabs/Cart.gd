@@ -52,14 +52,15 @@ func collide():
 	if !moving:
 		return
 	$CollisionSoundASP.play()
+	$Area2D.queue_free()
+	$Top.queue_free()
+	$CollisionShape2D.queue_free()
 	moving = false
 	house_death_anim.modulate.a = 1.0
 	house_death_anim.play("default")
 	while true:
 		if house_death_anim.frame == 1:
-			$AnimatedSprite2D.visible = false
-			$Area2D.visible = false
-			$Top.visible = false
+			$AnimatedSprite2D.queue_free()
 			break
 		else:
 			await house_death_anim.frame_changed
@@ -70,6 +71,8 @@ func collide():
 
 func on_top_body_entered(body):
 	if body.is_in_group("player"):
+		if !moving:
+			return
 		body.velocity.y = -500
 		die()
 

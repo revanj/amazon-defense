@@ -108,10 +108,10 @@ func get_hurt():
 	hurt_stun = false
 	
 	var tween = get_tree().create_tween()
+	TweenRegister.tweens.append(tween)
 	var gap_time = 0.08
 	var loop_count = 5
 	for i in range(loop_count):
 		tween.tween_property(self, "modulate", Color.TRANSPARENT, gap_time)
 		tween.tween_property(self, "modulate", Color.WHITE, gap_time)
-	
 	tween.tween_callback(func(): can_be_hurt = true)

@@ -25,6 +25,9 @@ func heath_dec(amount):
 
 func end_sequence():
 	get_tree().call_group("projectile", "queue_free")
+	for tween in TweenRegister.tweens:
+		if tween.is_valid():
+			tween.kill()	
 	get_tree().change_scene_to_file("res://EndScene.tscn")
 
 func _process(delta):

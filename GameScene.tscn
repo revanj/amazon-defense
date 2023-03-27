@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c6pwlogocbggn"]
+[gd_scene load_steps=21 format=3 uid="uid://c6pwlogocbggn"]
 
 [ext_resource type="Texture2D" uid="uid://dl8k28m0nh5w6" path="res://Art/background/background_2.png" id="1_q7r3u"]
 [ext_resource type="PackedScene" uid="uid://d2v11jcu7sbdl" path="res://Prefabs/Player.tscn" id="1_wrjia"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dualwovlk05wq" path="res://Art/background/house.png" id="5_aa7wd"]
 [ext_resource type="Texture2D" uid="uid://dj0nxphlwq5bs" path="res://Art/background/ground.png" id="7_oo481"]
 [ext_resource type="PackedScene" uid="uid://dtiqxsodrnmd8" path="res://Prefabs/UI.tscn" id="9_pvex6"]
+[ext_resource type="Script" path="res://PauseProcessor.gd" id="12_ki3sj"]
 [ext_resource type="AudioStream" uid="uid://b4pi3ctxop82q" path="res://Sounds/Ketsa - Funk Heaven.mp3" id="13_uolfe"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_i6dii"]
@@ -147,7 +148,14 @@ stream = ExtResource("13_uolfe")
 volume_db = -2.0
 autoplay = true
 
+[node name="PauseProcessor" type="Node" parent="." node_paths=PackedStringArray("pause_menu")]
+process_mode = 3
+script = ExtResource("12_ki3sj")
+pause_menu = NodePath("../CanvasLayer/PauseMenu")
+
 [connection signal="area_entered" from="House/Area2D" to="Bookkeeper" method="on_enemy_entered"]
 [connection signal="body_entered" from="House/Area2D" to="Bookkeeper" method="on_area_2d_body_entered"]
 [connection signal="area_entered" from="Bounds" to="Bounds" method="on_area_entered"]
 [connection signal="body_entered" from="Bounds" to="Bounds" method="on_body_entered"]
+
+[editable path="CanvasLayer"]

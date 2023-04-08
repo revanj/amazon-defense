@@ -29,5 +29,6 @@ shape = SubResource("SegmentShape2D_2bhy6")
 
 [node name="ReflectASP" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_t7hw1")
+bus = &"Effect"
 
 [connection signal="area_entered" from="." to="." method="on_area_entered"]

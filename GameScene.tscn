@@ -52,9 +52,9 @@ UI = NodePath("../CanvasLayer")
 
 [node name="DroneSpawner" type="Node2D" parent="." node_paths=PackedStringArray("timer")]
 script = ExtResource("2_aa5qr")
-timer = NodePath("Timer")
+timer = NodePath("ElapsedTimer")
 
-[node name="Timer" type="Timer" parent="DroneSpawner"]
+[node name="ElapsedTimer" type="Timer" parent="DroneSpawner"]
 wait_time = 2.5
 autostart = true
 
@@ -144,9 +144,11 @@ texture = ExtResource("7_oo481")
 position = Vector2(489, 272)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("13_uolfe")
 volume_db = -2.0
 autoplay = true
+bus = &"Music"
 
 [node name="PauseProcessor" type="Node" parent="." node_paths=PackedStringArray("pause_menu")]
 process_mode = 3

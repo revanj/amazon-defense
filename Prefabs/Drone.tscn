@@ -114,9 +114,12 @@ sprite_frames = SubResource("SpriteFrames_fwynn")
 stream = SubResource("AudioStreamRandomizer_1jceo")
 volume_db = -5.0
 pitch_scale = 1.5
+bus = &"Effect"
 
 [node name="DeathSoundASP" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_x2mbe")
+bus = &"Effect"
 
 [node name="CollisionSoundASP" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_2clul")
+bus = &"Effect"

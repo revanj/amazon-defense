@@ -136,13 +136,16 @@ shape = SubResource("RectangleShape2D_3lfro")
 [node name="MetalShotASP" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_234vy")
 volume_db = -5.0
+bus = &"Effect"
 
 [node name="DeathSoundASP" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_7n703")
 volume_db = 5.0
+bus = &"Effect"
 
 [node name="CollisionSoundASP" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_46syk")
+bus = &"Effect"
 
 [connection signal="body_entered" from="Area2D" to="." method="on_hurtbox_body_entered"]
 [connection signal="body_entered" from="Top" to="." method="on_top_body_entered"]

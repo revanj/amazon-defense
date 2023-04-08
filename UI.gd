@@ -27,8 +27,16 @@ func end_sequence():
 	get_tree().call_group("projectile", "queue_free")
 	for tween in TweenRegister.tweens:
 		if tween.is_valid():
-			tween.kill()	
+			tween.kill()
 	get_tree().change_scene_to_file("res://EndScene.tscn")
 
 func _process(delta):
 	$Label.text = "Drones killed: " + str(ScoreKeeper.score)
+	
+func _ready():
+	var effect_bus = AudioServer.get_bus_index("Effect")
+	var music_bus = AudioServer.get_bus_index("Music")
+	var effect_db = AudioServer.get_bus_volume_db(effect_bus)
+	var music_db = AudioServer.get_bus_volume_db(music_bus)
+	$PauseMenu/EffectSlider.value = db_to_linear(effect_db)
+	$PauseMenu/MusicSlider.value = db_to_linear(music_db)

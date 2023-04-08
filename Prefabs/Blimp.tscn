@@ -126,9 +126,12 @@ sprite_frames = SubResource("SpriteFrames_swcjr")
 
 [node name="ShotPlayerASP" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_eyoaf")
+bus = &"Effect"
 
 [node name="DeathSoundASP" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_repmp")
+bus = &"Effect"
 
 [node name="PopASP" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_cpjy6")
+bus = &"Effect"

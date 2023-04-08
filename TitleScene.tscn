@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://b8sp2nbn2yhs3" path="res://Art/menu/title_scene.png" id="1_moohe"]
 [ext_resource type="Script" path="res://TitleScene.gd" id="2_6txhw"]
 [ext_resource type="Texture2D" uid="uid://b8p0achdunt4a" path="res://Art/buttons/button_play_default.png" id="3_j4kmp"]
-[ext_resource type="AudioStream" uid="uid://3ws3x25f8o3o" path="res://Sounds/Ketsa - Reaction Satisfaction.mp3" id="3_p6d12"]
 [ext_resource type="Texture2D" uid="uid://db4bugnmpa52e" path="res://Art/buttons/button_play_click.png" id="4_8ebwh"]
 [ext_resource type="Texture2D" uid="uid://c7lcvd118fk3e" path="res://Art/buttons/button_play_hover.png" id="5_g7vq1"]
+[ext_resource type="AudioStream" uid="uid://dsqgdjj07gvb3" path="res://Sounds/amazon_defender_main_menu_-_draft_with_a_few_more_parts.mp3" id="6_886mq"]
 
 [node name="TitleScene" type="TextureRect"]
 anchors_preset = 15
@@ -28,8 +28,9 @@ texture_hover = ExtResource("5_g7vq1")
 stretch_mode = 0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_p6d12")
+stream = ExtResource("6_886mq")
 volume_db = -2.0
 autoplay = true
+bus = &"Menu"
 
 [connection signal="pressed" from="PlayButton" to="." method="on_play_button_pressed"]

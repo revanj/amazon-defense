@@ -24,13 +24,14 @@ func _ready():
 	
 
 func _physics_process(delta):
-	time_elapsed = Time.get_ticks_msec() / 1000.0 - time_started
+	#time_elapsed = Time.get_ticks_msec() / 1000.0 - time_started
+	time_elapsed += delta
 
 @onready var drone_prefabs = [drone, drone_drop, drone_shield_front]
 func drone_spawn_coro():
 	var base_spawntime = 3
 	# wait out system init
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(1, false).timeout
 	while true:
 		send_drone()
 		var time_to_wait = base_spawntime / (1 + 1.0 / 150.0 * time_elapsed)
@@ -40,11 +41,11 @@ func drone_spawn_coro():
 			if test < p:
 				var interval_time = time_to_wait / 4 * randf_range(0.2, 1.2)
 				await get_tree().create_timer(
-					interval_time
+					interval_time, false
 				).timeout
 				send_drone()
 				time_to_wait -= interval_time
-		await get_tree().create_timer(time_to_wait).timeout
+		await get_tree().create_timer(time_to_wait, false).timeout
 		
 func send_drone():
 	var top = 0
@@ -75,12 +76,12 @@ func send_drone():
 	drone.move_speed = speed
 
 func cart_spawn_coro():
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(3, false).timeout
 	while true:
 		var base_spawn_time = 3
 		send_cart()
 		var time_to_wait = base_spawn_time / (1.0 + 1.0 / 100.0 * time_elapsed) * randf_range(0.9,1.1)
-		await get_tree().create_timer(time_to_wait).timeout
+		await get_tree().create_timer(time_to_wait, false).timeout
 
 func send_cart():
 	var min_cart_speed = 130
@@ -107,12 +108,12 @@ func send_blimp():
 	inst.moving = true
 	
 func blimp_spawn_coro():
-	await get_tree().create_timer(15).timeout
+	await get_tree().create_timer(15, false).timeout
 	while true:
 		var base_spawn_time = 20
 		send_blimp()
 		var time_to_wait = base_spawn_time / (1 + 1 / 100 * time_elapsed) * randf_range(0.9,1.1)
-		await get_tree().create_timer(time_to_wait).timeout
+		await get_tree().create_timer(time_to_wait, false).timeout
 		
 func spawn_drone(enemy, spawn_x, spawn_y):
 	var inst = enemy.instantiate()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dtiqxsodrnmd8"]
+[gd_scene load_steps=17 format=3 uid="uid://dtiqxsodrnmd8"]
 
 [ext_resource type="Script" path="res://UI.gd" id="1_wrtkq"]
 [ext_resource type="Texture2D" uid="uid://c8e1fokff7wnv" path="res://Art/health_bar/househealth_empty.png" id="2_00iwk"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://csjgvwmrc1vpn" path="res://Art/font/joystix monospace.otf" id="4_srwkm"]
 [ext_resource type="Texture2D" uid="uid://b3d2dxuixiynb" path="res://Art/menu/pause_overlay.png" id="5_f83th"]
 [ext_resource type="Texture2D" uid="uid://r4j484g8cjtu" path="res://Art/menu/paused.png" id="6_5wgc8"]
+[ext_resource type="Script" path="res://Prefabs/PauseMenu.gd" id="6_rao3h"]
 [ext_resource type="Texture2D" uid="uid://c6jt1uivauk1s" path="res://Art/menu/instructions.png" id="7_wswqi"]
 [ext_resource type="Texture2D" uid="uid://den80eknjwc00" path="res://Art/menu/icon_music.png" id="8_ks5u4"]
 [ext_resource type="Texture2D" uid="uid://drimhetop3jyw" path="res://Art/menu/button_thin_default.png" id="9_fmpue"]
@@ -171,6 +172,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_f83th")
+script = ExtResource("6_rao3h")
 
 [node name="PauseText" type="TextureRect" parent="PauseMenu"]
 layout_mode = 1
@@ -192,7 +194,34 @@ offset_right = 428.0
 offset_bottom = 367.0
 texture = ExtResource("7_wswqi")
 
-[node name="HSlider" type="HSlider" parent="PauseMenu"]
+[node name="EffectSlider" type="HSlider" parent="PauseMenu"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 2
+offset_left = 517.0
+offset_top = 295.0
+offset_right = 606.0
+offset_bottom = 310.0
+scale = Vector2(3, 3)
+theme_override_constants/grabber_offset = 1
+theme_override_icons/grabber = ExtResource("9_fmpue")
+theme_override_icons/grabber_highlight = ExtResource("10_bxthg")
+theme_override_styles/slider = SubResource("StyleBoxTexture_uk7hq")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_pgdu8")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_dt654")
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/EffectSlider"]
+layout_mode = 0
+offset_left = -17.3333
+offset_top = -0.666664
+offset_right = -1.33333
+offset_bottom = 15.3333
+texture = ExtResource("12_1nxji")
+
+[node name="MusicSlider" type="HSlider" parent="PauseMenu"]
 texture_filter = 1
 texture_repeat = 1
 layout_mode = 2
@@ -207,37 +236,17 @@ theme_override_icons/grabber_highlight = ExtResource("10_bxthg")
 theme_override_styles/slider = SubResource("StyleBoxTexture_uk7hq")
 theme_override_styles/grabber_area = SubResource("StyleBoxTexture_pgdu8")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_dt654")
-value = 50.0
+max_value = 1.0
+step = 0.01
+value = 0.5
 
-[node name="TextureRect" type="TextureRect" parent="PauseMenu/HSlider"]
-layout_mode = 0
-offset_left = -17.3333
-offset_top = -0.666664
-offset_right = -1.33333
-offset_bottom = 15.3333
-texture = ExtResource("12_1nxji")
-
-[node name="HSlider2" type="HSlider" parent="PauseMenu"]
-texture_filter = 1
-texture_repeat = 1
-layout_mode = 2
-offset_left = 517.0
-offset_top = 294.0
-offset_right = 606.0
-offset_bottom = 309.0
-scale = Vector2(3, 3)
-theme_override_constants/grabber_offset = 1
-theme_override_icons/grabber = ExtResource("9_fmpue")
-theme_override_icons/grabber_highlight = ExtResource("10_bxthg")
-theme_override_styles/slider = SubResource("StyleBoxTexture_uk7hq")
-theme_override_styles/grabber_area = SubResource("StyleBoxTexture_pgdu8")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_dt654")
-value = 50.0
-
-[node name="TextureRect" type="TextureRect" parent="PauseMenu/HSlider2"]
+[node name="TextureRect" type="TextureRect" parent="PauseMenu/MusicSlider"]
 layout_mode = 0
 offset_left = -17.3333
 offset_top = -0.666664
 offset_right = -1.33333
 offset_bottom = 15.3333
 texture = ExtResource("8_ks5u4")
+
+[connection signal="value_changed" from="PauseMenu/EffectSlider" to="PauseMenu" method="_on_effect_slider_value_changed"]
+[connection signal="value_changed" from="PauseMenu/MusicSlider" to="PauseMenu" method="_on_music_slider_value_changed"]
